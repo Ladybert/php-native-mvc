@@ -2,6 +2,7 @@
 
 require_once '../app/core/Controller.php';
 require_once '../app/models/Dtp_model.php';
+require_once '../app/core/Helper.php';
 
 class DtpController extends Controller
 {
@@ -23,7 +24,7 @@ class DtpController extends Controller
     public function save()
     {
         if ($this->dtpModel->addDtp($_POST) > 0) {
-            header('Location: ' . BASEURL . '/dtp');
+            Helper::redirect('/dtp');
             exit;
         }
     }
@@ -47,7 +48,7 @@ class DtpController extends Controller
     public function update()
     {
         if ($this->dtpModel->updateDtp($_POST) > 0) {
-            header('Location: ' . BASEURL . '/dtp');
+            Helper::redirect('dtp/detail/' . $_POST['id']);
             exit;
         }
     }

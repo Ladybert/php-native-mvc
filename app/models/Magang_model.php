@@ -63,15 +63,4 @@ class Magang_model extends Database {
         $this->db->execute();
         return $this->db->rowCount();
     }
-
-    public function searchMagang($keyword) {
-        $query = "SELECT alpatech.*, kelas.kelas, dtp.dtp 
-                FROM alpatech 
-                JOIN kelas ON alpatech.kelas = kelas.id 
-                JOIN dtp ON alpatech.dtp = dtp.id
-                WHERE alpatech.nama LIKE :keyword";
-        $this->db->query($query);
-        $this->db->bind('keyword', "%$keyword%");
-        return $this->db->resultSet();
-    }
 }

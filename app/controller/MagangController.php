@@ -3,6 +3,7 @@ require_once '../app/core/Controller.php';
 require_once '../app/models/Magang_model.php';
 require_once '../app/models/Kelas_model.php';
 require_once '../app/models/Dtp_model.php';
+require_once '../app/core/Helper.php';
 
 class MagangController extends Controller {
     private $magangModel;
@@ -37,31 +38,22 @@ class MagangController extends Controller {
 
     public function save()
     {
-        if( $this->magangModel->addMagang ($_POST) > 0) {
-                header('Location: '.  BASEURL  . '/magang/index');
-                exit;
-            }
+        if ($this->magangModel->addMagang($_POST) > 0) {
+            Helper::redirect('magang/index');
+        }
     }
 
     public function delete($id)
     {
-        if( $this->magangModel->deleteMagang ($id) > 0) {
-                header('Location: '.  BASEURL  . '/magang/index');
-                exit;
-            }
+        if ($this->magangModel->deleteMagang($id) > 0) {
+            Helper::redirect('magang/index');
+        }
     }
 
     public function update()
     {
-        if (!isset($_POST['id'])) {
-            return;
-        }
-
-        $id = $_POST['id'];
-        
-        if( $this->magangModel->updateMagang ($_POST) > 0) {
-            header('Location: '.  BASEURL  . '/magang/detail/' . $id);
-            exit;
+        if ($this->magangModel->updateMagang($_POST) > 0) {
+            Helper::redirect('magang/detail/' . $_POST['id']);
         }
     }
 }

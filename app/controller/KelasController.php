@@ -2,6 +2,7 @@
 
 require_once '../app/core/Controller.php';
 require_once '../app/models/Kelas_model.php';
+require_once '../app/core/Helper.php';
 
 class KelasController extends Controller
 {
@@ -23,7 +24,7 @@ class KelasController extends Controller
     public function save()
     {
         if ($this->kelasModel->addKelas($_POST) > 0) {
-            header('Location: ' . BASEURL . '/kelas');
+            Helper::redirect('/kelas');
             exit;
         }
     }
@@ -47,7 +48,7 @@ class KelasController extends Controller
     public function update()
     {
         if ($this->kelasModel->updateKelas($_POST) > 0) {
-            header('Location: ' . BASEURL . '/kelas');
+            Helper::redirect('kelas/detail/' . $_POST['id']);
             exit;
         }
     }
