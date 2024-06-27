@@ -53,8 +53,14 @@ class MagangController extends Controller {
 
     public function update()
     {
+        if (!isset($_POST['id'])) {
+            return;
+        }
+
+        $id = $_POST['id'];
+        
         if( $this->magangModel->updateMagang ($_POST) > 0) {
-            header('Location: '.  BASEURL  . '/magang/index');
+            header('Location: '.  BASEURL  . '/magang/detail/' . $id);
             exit;
         }
     }
